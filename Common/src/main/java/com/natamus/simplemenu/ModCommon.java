@@ -1,6 +1,7 @@
 package com.natamus.simplemenu;
 
 import com.natamus.collective.globalcallbacks.MainMenuLoadedCallback;
+import com.natamus.collective.services.Services;
 import com.natamus.simplemenu.config.ConfigHandler;
 import com.natamus.simplemenu.data.Constants;
 import com.natamus.simplemenu.util.Reference;
@@ -14,6 +15,10 @@ public class ModCommon {
 	}
 
 	private static void load() {
+		if (!Services.MODLOADER.isClientSide()) {
+			return;
+		}
+
 		Util.init();
 
 		MainMenuLoadedCallback.MAIN_MENU_LOADED.register(() -> {
@@ -21,7 +26,7 @@ public class ModCommon {
 				Util.initTextureData();
 			}
 			catch (Exception ex) {
-				Constants.logger.warn("[" + Reference.NAME + "] Something went wrong initiating the mod.");
+				Constants.logger.warn("[" + Reference.NAME + "] Something went wrong while initiating the mod.");
 				ex.printStackTrace();
 			}
 		});
