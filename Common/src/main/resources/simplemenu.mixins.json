@@ -9,6 +9,7 @@
 	"GuiGraphicsMixin",
 	"LogoRendererMixin",
 	"MinecraftMixin",
+	"PanoramaRendererMixin",
 	"RealmsNotificationScreenMixin",
 	"ScreenMixin",
 	"SplashManagerMixin",
