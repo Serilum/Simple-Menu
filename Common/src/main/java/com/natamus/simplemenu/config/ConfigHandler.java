@@ -20,7 +20,7 @@ public class ConfigHandler extends DuskConfig {
 
 	@Entry public static boolean setCustomBackground = false;
 
-	@Entry public static boolean hideMinecraftRealmsButton = true;
+	@Entry public static boolean hideMinecraftRealmsButton = false;
 	@Entry public static boolean enableServerPromoButton = false;
 	@Entry public static String serverPromoButtonTextDefault = "Need a Server?";
 	@Entry public static String serverPromoButtonTextOnHover = "Use code PROMO for 25% off";
