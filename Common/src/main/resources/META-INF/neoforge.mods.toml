@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="*"
+license="All rights reserved"
+issueTrackerURL="https://github.com/Serilum/.issue-tracker/labels/Mod:%20Simple%20Menu"
+logoFile="icon.png"
+
+[[mods]]
+modId="simplemenu"
+version="1.2"
+displayName="Simple Menu"
+displayURL="https://serilum.com/mod/simple-menu"
+authors="Rick South"
+description='''Adds basic functionality to edit the style of Minecraft's main menu and window.
+'''
+credits='''Thank you very much to my Membership sponsors for supporting the development of this mod:  
+
+Alister, Andrean Olgo, aternosorg, BirdieMiner, Cherriesaurus, Jeremy Langford, Michael W. S., Rare Students, Shana Gitnick, Tyler Behl   
+
+If you would like to contribute too, check out https://serilum.com/donate. Appreciate it! <3   
+'''
+
+[[dependencies.simplemenu]]
+    modId="collective"
+    type="required"
+    versionRange="[7.61,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.simplemenu]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21]"
+    ordering="NONE"
+    side="BOTH"
+
+[[mixins]]
+    config = "simplemenu.mixins.json"
