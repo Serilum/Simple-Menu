@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "simplemenu",
-  "version": "1.2",
+  "version": "1.3",
 
   "name": "Simple Menu",
   "description": "Adds basic functionality to edit the style of Minecraft's main menu and window.",
@@ -51,8 +51,8 @@
 	  " Cherriesaurus",
 	  " Jeremy Langford",
 	  " Michael W. S.",
-	  " Rare Students",
 	  " Shana Gitnick",
+	  " Sukhmai",
 	  " Tyler Behl"
   ]
 }
