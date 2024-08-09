@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.natamus.simplemenu.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+  ],
+  "client": [
+	"GuiGraphicsMixin",
+	"LogoRendererMixin",
+	"MinecraftMixin",
+	"PanoramaRendererMixin",
+	"RealmsNotificationScreenMixin",
+	"ScreenMixin",
+	"SplashManagerMixin",
+	"TitleScreenMixin"
+  ],
+  "server": [
+  ],
+  "injectors": {
+	"defaultRequire": 1
+  }
+}

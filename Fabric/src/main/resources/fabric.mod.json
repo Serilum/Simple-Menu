@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "simplemenu",
+  "version": "1.4",
+
+  "name": "Simple Menu",
+  "description": "Adds basic functionality to edit the style of Minecraft's main menu and window.",
+  "authors": [ "Rick South" ],
+  "contact": {
+    "homepage": "https://serilum.com/mod/simple-menu",
+    "sources": "https://github.com/Serilum/Simple-Menu",
+    "issues": "https://github.com/Serilum/.issue-tracker/labels/Mod:%20Simple%20Menu"
+  },
+
+  "license": "All Right Reserved",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": { "main": [ "com.natamus.simplemenu.ModFabric" ], "modmenu": [ "com.natamus.simplemenu.fabric.config.IntegrateModMenu" ] },
+  "mixins": [
+    "simplemenu.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "fabric": "*",
+    "minecraft": ">=1.21",
+    "java": ">=21",
+    "collective": ">=7.80"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "Donate <3" : "https://ricksouth.com/donate"
+      }
+    }
+  },
+
+  "contributors": [
+	  " ",
+	  "Thank you very much to my Membership sponsors for supporting the development of this mod!",
+	  " ",
+	  "If you would like to contribute too, check out https://serilum.com/donate.",
+	  " ",
+	  "Membership sponsors:",
+	  " Alister",
+	  " Andrean Olgo",
+	  " aternosorg",
+	  " Cherriesaurus",
+	  " Michael W. S.",
+	  " Nahuel Fernandez",
+	  " Shana Gitnick",
+	  " Tyler Behl"
+  ]
+}
