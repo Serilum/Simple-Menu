@@ -6,7 +6,7 @@ logoFile="icon.png"
 
 [[mods]]
 modId="simplemenu"
-version="1.4"
+version="1.5"
 displayName="Simple Menu"
 displayURL="https://serilum.com/mod/simple-menu"
 authors="Rick South"
@@ -22,7 +22,7 @@ If you would like to contribute too, check out https://serilum.com/donate. Appre
 [[dependencies.simplemenu]]
     modId="collective"
     mandatory=true
-    versionRange="[7.78,)"
+    versionRange="[7.83,)"
     ordering="NONE"
     side="BOTH"
 
