@@ -6,6 +6,7 @@ import com.natamus.collective.functions.DataFunctions;
 import com.natamus.simplemenu.config.ConfigHandler;
 import com.natamus.simplemenu.data.Constants;
 import com.natamus.simplemenu.data.Variables;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.IoSupplier;
@@ -54,7 +55,7 @@ public class Util {
 		String logoFilePath = logoPath + File.separator + "logo.png";
 		File logoFile = new File(logoFilePath);
 		if (!logoFile.exists()) {
-			InputStream defaultLogoInputStream = Constants.mc.getResourceManager().open(ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/title/minecraft.png"));
+			InputStream defaultLogoInputStream = Minecraft.getInstance().getResourceManager().open(ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/title/minecraft.png"));
 
 			BufferedImage defaultLogoBufferedImage = ImageIO.read(defaultLogoInputStream);
 			ImageIO.write(defaultLogoBufferedImage, "png", logoFile);
@@ -68,7 +69,7 @@ public class Util {
 			NativeImage logoNativeImage = NativeImage.read(logoInputStream);
 			DynamicTexture logoTexture = new DynamicTexture(logoResourceLocation::toString, logoNativeImage);
 
-			Constants.mc.getTextureManager().register(logoResourceLocation, logoTexture);
+			Minecraft.getInstance().getTextureManager().register(logoResourceLocation, logoTexture);
 
 			logoNativeImage.close();
 
@@ -79,7 +80,7 @@ public class Util {
 		String logoEditionFilePath = logoPath + File.separator + "edition.png";
 		File logoEditionFile = new File(logoEditionFilePath);
 		if (!logoEditionFile.exists()) {
-			InputStream defaultEditionInputStream = Constants.mc.getResourceManager().open(ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/title/edition.png"));
+			InputStream defaultEditionInputStream = Minecraft.getInstance().getResourceManager().open(ResourceLocation.fromNamespaceAndPath("minecraft", "textures/gui/title/edition.png"));
 
 			BufferedImage defaultEditionBufferedImage = ImageIO.read(defaultEditionInputStream);
 			ImageIO.write(defaultEditionBufferedImage, "png", logoEditionFile);
@@ -93,7 +94,7 @@ public class Util {
 			NativeImage logoEditionNativeImage = NativeImage.read(logoEditionInputStream);
 			DynamicTexture logoEditionTexture = new DynamicTexture(editionResourceLocation::toString, logoEditionNativeImage);
 
-			Constants.mc.getTextureManager().register(ResourceLocation.fromNamespaceAndPath(Reference.MOD_ID, "edition"), logoEditionTexture);
+			Minecraft.getInstance().getTextureManager().register(ResourceLocation.fromNamespaceAndPath(Reference.MOD_ID, "edition"), logoEditionTexture);
 
 			logoEditionNativeImage.close();
 
@@ -122,7 +123,7 @@ public class Util {
 			NativeImage backgroundNativeImage = NativeImage.read(backgroundInputStream);
 			DynamicTexture backgroundTexture = new DynamicTexture(backgroundResourceLocation::toString, backgroundNativeImage);
 
-			Constants.mc.getTextureManager().register(backgroundResourceLocation, backgroundTexture);
+			Minecraft.getInstance().getTextureManager().register(backgroundResourceLocation, backgroundTexture);
 
 			backgroundNativeImage.close();
 
@@ -146,7 +147,7 @@ public class Util {
 			if (!icon16x16.exists() || !icon32x32.exists()) {
 				int n = 0;
 
-				List<IoSupplier<InputStream>> defaultIconList = IconSet.RELEASE.getStandardIcons(Constants.mc.getVanillaPackResources());
+				List<IoSupplier<InputStream>> defaultIconList = IconSet.RELEASE.getStandardIcons(Minecraft.getInstance().getVanillaPackResources());
 				for (IoSupplier<InputStream> defaultIcon : defaultIconList) {
 					InputStream iconInputStream = defaultIcon.get();
 
@@ -200,7 +201,7 @@ public class Util {
 					}
 				}
 
-				GLFW.glfwSetWindowIcon(Constants.mc.getWindow().getWindow(), buffer);
+				GLFW.glfwSetWindowIcon(Minecraft.getInstance().getWindow().getWindow(), buffer);
 			} finally {
 				list1.forEach(MemoryUtil::memFree);
 			}

@@ -2,6 +2,7 @@ package com.natamus.simplemenu.mixin;
 
 import com.natamus.simplemenu.config.ConfigHandler;
 import com.natamus.simplemenu.data.Constants;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.TitleScreen;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiGraphicsMixin {
 	@Inject(method = "drawCenteredString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", at = @At(value = "HEAD"), cancellable = true)
 	public void drawCenteredString(Font font, Component component, int x, int y, int a, CallbackInfo ci) {
-		if (!(Constants.mc.screen instanceof TitleScreen)) {
+		if (!(Minecraft.getInstance().screen instanceof TitleScreen)) {
 			return;
 		}
 
@@ -28,7 +29,7 @@ public class GuiGraphicsMixin {
 
 	@Inject(method = "drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)V", at = @At(value = "HEAD"), cancellable = true)
 	public void drawString(Font font, String text, int x, int y, int a, boolean b, CallbackInfo ci) {
-		if (!(Constants.mc.screen instanceof TitleScreen)) {
+		if (!(Minecraft.getInstance().screen instanceof TitleScreen)) {
 			return;
 		}
 

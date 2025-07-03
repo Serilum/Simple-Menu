@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "simplemenu",
-  "version": "1.5",
+  "version": "2.0",
 
   "name": "Simple Menu",
   "description": "Adds basic functionality to edit the style of Minecraft's main menu and window.",
