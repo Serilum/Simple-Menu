@@ -21,6 +21,7 @@ public class ConfigHandler extends DuskConfig {
 	@Entry public static boolean setCustomBackground = false;
 
 	@Entry public static boolean hideMinecraftRealmsButton = false;
+	@Entry public static boolean expandModsButton = false;
 	@Entry public static boolean enableServerPromoButton = false;
 	@Entry public static String serverPromoButtonTextDefault = "Need a Server?";
 	@Entry public static String serverPromoButtonTextOnHover = "Use code PROMO for 25% off";
@@ -55,6 +56,9 @@ public class ConfigHandler extends DuskConfig {
 
 		configMetaData.put("hideMinecraftRealmsButton", Arrays.asList(
 			"If the Minecraft Realms button should be hidden from the main menu. Enabled by default, since modded Minecraft is incompatible with it."
+		));
+		configMetaData.put("expandModsButton", Arrays.asList(
+			"Whether the Mods button's width should be expanded to match the singleplayer button width. Can be useful with 'hideMinecraftRealmsButton' disabled. Only applicable for Forge and NeoForge."
 		));
 		configMetaData.put("enableServerPromoButton", Arrays.asList(
 			"Whether the Minecraft Realms button should be replaced by a serverhosting promo button."
