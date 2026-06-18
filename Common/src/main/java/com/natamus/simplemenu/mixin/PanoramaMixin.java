@@ -18,8 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PanoramaMixin {
 	@Shadow public static @Final @Mutable Identifier PANORAMA_OVERLAY;
 
-	@Inject(method = "extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;IIZ)V", at = @At(value = "HEAD"))
-	public void render(GuiGraphicsExtractor guiGraphics, int i, int j, boolean b, CallbackInfo ci) {
+	@Inject(method = "extractRenderState(Lnet/minecraft/client/gui/GuiGraphicsExtractor;II)V", at = @At(value = "HEAD"))
+	public void render(GuiGraphicsExtractor graphics, int width, int height, CallbackInfo ci) {
 		if (ConfigHandler.setCustomBackground && Variables.loadedBackgroundImage && !Variables.setBackgroundIdentifier) {
 			PanoramaMixin.PANORAMA_OVERLAY = Identifier.fromNamespaceAndPath(Reference.MOD_ID, "background");
 			Variables.setBackgroundIdentifier = true;

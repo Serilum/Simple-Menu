@@ -6,7 +6,7 @@ logoFile="icon.png"
 
 [[mods]]
 modId="simplemenu"
-version="2.1"
+version="2.2"
 displayName="Simple Menu"
 displayURL="https://serilum.com/mod/simple-menu"
 authors="Rick South"
