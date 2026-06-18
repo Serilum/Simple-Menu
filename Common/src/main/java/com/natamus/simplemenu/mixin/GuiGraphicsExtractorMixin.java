@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiGraphicsExtractorMixin {
 	@Inject(method = "centeredText(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", at = @At(value = "HEAD"), cancellable = true)
 	public void centeredText(Font font, Component component, int x, int y, int color, CallbackInfo ci) {
-		if (!(Minecraft.getInstance().screen instanceof TitleScreen)) {
+		if (!(Minecraft.getInstance().gui.screen() instanceof TitleScreen)) {
 			return;
 		}
 
@@ -29,7 +29,7 @@ public class GuiGraphicsExtractorMixin {
 
 	@Inject(method = "text(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)V", at = @At(value = "HEAD"), cancellable = true)
 	public void text(Font font, String text, int x, int y, int color, boolean dropShadow, CallbackInfo ci) {
-		if (!(Minecraft.getInstance().screen instanceof TitleScreen)) {
+		if (!(Minecraft.getInstance().gui.screen() instanceof TitleScreen)) {
 			return;
 		}
 
