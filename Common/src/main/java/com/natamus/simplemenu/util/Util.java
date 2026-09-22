@@ -1,5 +1,6 @@
 package com.natamus.simplemenu.util;
 
+import com.mojang.blaze3d.Blaze3D;
 import com.mojang.blaze3d.platform.IconSet;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.natamus.collective.functions.DataFunctions;
@@ -10,10 +11,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.IoSupplier;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWImage;
-import org.lwjgl.system.MemoryStack;
-import org.lwjgl.system.MemoryUtil;
+import org.lwjgl.sdl.SDLSurface;
+import org.lwjgl.sdl.SDLVideo;
+import org.lwjgl.sdl.SDL_Surface;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -133,7 +132,7 @@ public class Util {
 
 	public static void openUrl(String url) {
 		try {
-			net.minecraft.util.Util.getPlatform().openUri(new URI(url));
+			Blaze3D.openUri(new URI(url));
 		} catch (URISyntaxException ex) {
 			Constants.logger.warn(Constants.logPrefix + "Unable to open custom URL: " + url);
 		}
@@ -145,25 +144,19 @@ public class Util {
 			File icon32x32 = new File(iconPath + File.separator + "/icon_32x32.png");
 
 			if (!icon16x16.exists() || !icon32x32.exists()) {
-				int n = 0;
-
-				List<IoSupplier<InputStream>> defaultIconList = IconSet.RELEASE.getStandardIcons(Minecraft.getInstance().getVanillaPackResources());
+				List<IoSupplier<InputStream>> defaultIconList = IconSet.RELEASE.getStandardIcons(Minecraft.getInstance().getVanillaPackResources().fullResources());
 				for (IoSupplier<InputStream> defaultIcon : defaultIconList) {
 					InputStream iconInputStream = defaultIcon.get();
 
 					BufferedImage defaultIconBufferedImage = ImageIO.read(iconInputStream);
 
-					if (n == 0) {
+					int iconWidth = defaultIconBufferedImage.getWidth();
+					if (iconWidth == 16) {
 						ImageIO.write(defaultIconBufferedImage, "png", icon16x16);
 					}
-					else if (n == 1) {
+					else if (iconWidth == 32) {
 						ImageIO.write(defaultIconBufferedImage, "png", icon32x32);
 					}
-					else {
-						break;
-					}
-
-					n+=1;
 				}
 
 				Constants.logger.info(Constants.logPrefix + "No custom icons found. Copied default to: " + iconPath);
@@ -184,26 +177,30 @@ public class Util {
 			}
 
 			List<IoSupplier<InputStream>> iconList = Arrays.asList(IoSupplier.create(icon16x16.toPath()), IoSupplier.create(icon32x32.toPath()));
-			List<ByteBuffer> list1 = new ArrayList<>(iconList.size());
+			List<NativeImage> nativeImages = new ArrayList<NativeImage>(iconList.size());
 
-			try (MemoryStack memorystack = MemoryStack.stackPush()) {
-				GLFWImage.Buffer buffer = GLFWImage.malloc(iconList.size(), memorystack);
-
-				for (int i = 0; i < iconList.size(); ++i) {
-					try (NativeImage nativeimage = NativeImage.read(iconList.get(i).get())) {
-						ByteBuffer bytebuffer = MemoryUtil.memAlloc(nativeimage.getWidth() * nativeimage.getHeight() * 4);
-						list1.add(bytebuffer);
-						bytebuffer.asIntBuffer().put(nativeimage.getPixelsABGR());
-						buffer.position(i);
-						buffer.width(nativeimage.getWidth());
-						buffer.height(nativeimage.getHeight());
-						buffer.pixels(bytebuffer);
-					}
+			try {
+				SDL_Surface primarySurface = createIconSurface(iconList.get(0), nativeImages);
+				if (primarySurface == null) {
+					Constants.logger.warn(Constants.logPrefix + "Unable to create the surface for the custom window icon.");
+					return;
 				}
 
-				GLFW.glfwSetWindowIcon(Minecraft.getInstance().getWindow().handle(), buffer);
-			} finally {
-				list1.forEach(MemoryUtil::memFree);
+				for (IoSupplier<InputStream> icon : iconList.subList(1, iconList.size())) {
+					SDL_Surface surface = createIconSurface(icon, nativeImages);
+					if (surface == null) {
+						continue;
+					}
+
+					SDLSurface.SDL_AddSurfaceAlternateImage(primarySurface, surface);
+					SDLSurface.SDL_DestroySurface(surface);
+				}
+
+				SDLVideo.SDL_SetWindowIcon(Minecraft.getInstance().getWindow().handle(), primarySurface);
+				SDLSurface.SDL_DestroySurface(primarySurface);
+			}
+			finally {
+				nativeImages.forEach(NativeImage::close);
 			}
 
 			Variables.loadedIconImage = true;
@@ -211,5 +208,12 @@ public class Util {
 		catch (IOException ex) {
 			Constants.logger.warn(Constants.logPrefix + "IOException when setting the custom window icon.");
 		}
+	}
+
+	private static SDL_Surface createIconSurface(IoSupplier<InputStream> iconSupplier, List<NativeImage> nativeImages) throws IOException {
+		NativeImage nativeImage = NativeImage.read(iconSupplier.get());
+		nativeImages.add(nativeImage);
+
+		return SDLSurface.SDL_CreateSurfaceFrom(nativeImage.getWidth(), nativeImage.getHeight(), 376840196, nativeImage.getPixelBytes(), nativeImage.getWidth() * 4);
 	}
 }
