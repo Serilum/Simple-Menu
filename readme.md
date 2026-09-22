@@ -1,5 +1,5 @@
 <h2>Simple Menu</h2>
-<p><a href="https://github.com/Serilum/Simple-Menu"><img src="https://serilum.com/assets/images/logo/simple-menu.png"></a></p><h2>Download</h2>
+<p><a href="https://github.com/Serilum/Simple-Menu"><img src="https://workflow.serilum.com/web/logo/128/simple-menu.png" width="100" height="100"></a></p><h2>Download</h2>
 <p>You can download Simple Menu on CurseForge and Modrinth:</p><p>&nbsp;&nbsp;CurseForge: &nbsp;&nbsp;<a href="https://curseforge.com/minecraft/mc-mods/simple-menu">https://curseforge.com/minecraft/mc-mods/simple-menu</a><br>&nbsp;&nbsp;Modrinth: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://modrinth.com/mod/simple-menu">https://modrinth.com/mod/simple-menu</a></p>
 <h2>Issue Tracker</h2>
 <p>To keep a better overview of all mods, the issue tracker is located in a separate repository.<br>&nbsp;&nbsp;For issues, ideas, suggestions or anything else, please follow this link:</p>
