@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
   "id": "simplemenu",
-  "version": "2.0",
+  "version": "2.3",
 
   "name": "Simple Menu",
   "description": "Adds basic functionality to edit the style of Minecraft's main menu and window.",
-  "authors": [ "Rick South" ],
+  "authors": [ "Serilum" ],
   "contact": {
     "homepage": "https://serilum.com/mod/simple-menu",
     "sources": "https://github.com/Serilum/Simple-Menu",
     "issues": "https://github.com/Serilum/.issue-tracker/labels/Mod:%20Simple%20Menu"
   },
 
-  "license": "All Right Reserved",
+  "license": "All Rights Reserved",
   "icon": "icon.png",
 
   "environment": "*",
-  "entrypoints": { "main": [ "com.natamus.simplemenu.ModFabric" ], "modmenu": [ "com.natamus.simplemenu.fabric.config.IntegrateModMenu" ] },
+  "entrypoints": { "main": [ "com.serilum.simplemenu.ModFabric" ], "modmenu": [ "com.serilum.simplemenu.fabric.config.IntegrateModMenu" ] },
   "mixins": [
     "simplemenu.mixins.json"
   ],
@@ -26,13 +26,13 @@
     "fabric": "*",
     "minecraft": ">=1.21",
     "java": ">=21",
-    "collective": ">=8.3"
+    "collective": ">=8.40"
   },
 
   "custom": {
     "modmenu": {
       "links": {
-        "Donate <3" : "https://ricksouth.com/donate"
+        "Donate <3" : "https://serilum.com/donate"
       }
     }
   },
@@ -41,16 +41,15 @@
 	  " ",
 	  "Thank you very much to my Membership sponsors for supporting the development of this mod!",
 	  " ",
-	  "If you would like to contribute too, check out https://serilum.com/donate.",
+	  "If you would like to contribute too, check out https://serilum.com/donate",
 	  " ",
 	  "Membership sponsors:",
-	  " Alister",
 	  " Andrean Olgo",
+	  " AnyankaT",
 	  " aternosorg",
 	  " Cherriesaurus",
-	  " Michael W. S.",
-	  " t128",
-	  " Tyler Behl",
-	  " XAgent"
+	  " Linda Jansen",
+	  " MWS",
+	  " Tyler Behl"
   ]
 }
