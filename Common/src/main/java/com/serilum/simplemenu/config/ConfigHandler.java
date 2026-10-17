@@ -40,18 +40,18 @@ public class ConfigHandler extends DuskConfig {
 		));
 
 		configMetaData.put("setCustomWindowIcon", Arrays.asList(
-			"If a custom window icon should be set. Two files are needed. Both in PNG format. One a 16 pixel square called 'icon_16x16.png', and one a 32 pixel square called 'icon_32x32.png'. Located in './config/simplemenu/icon'."
+			"If a custom window icon should be set. Two files are needed. Both in PNG format. One a 16 pixel square called 'icon_16x16.png', and one a 32 pixel square called 'icon_32x32.png'. Located in './config/serilum/simplemenu/icon'."
 		));
 
 		configMetaData.put("replaceMainMenuLogo", Arrays.asList(
-			"If a custom main menu logo should be rendered. This will replace the 'Minecraft' text. A 'logo.png' file is needed. Located in './config/simplemenu/logo'. By default the image dimensions are 1024x256. To remove it completely, use an empty .png file."
+			"If a custom main menu logo should be rendered. This will replace the 'Minecraft' text. A 'logo.png' file is needed. Located in './config/serilum/simplemenu/logo'. By default the image dimensions are 1024x256. To remove it completely, use an empty .png file."
 		));
 		configMetaData.put("replaceMainMenuEditionLogo", Arrays.asList(
-			"If a custom main menu 'edition' logo should be rendered. This will replace the 'Java Edition' text. An 'edition.png' file is needed. Located in './config/simplemenu/logo'. By default the image dimensions are 512x64. To remove it completely, use an empty .png file."
+			"If a custom main menu 'edition' logo should be rendered. This will replace the 'Java Edition' text. An 'edition.png' file is needed. Located in './config/serilum/simplemenu/logo'. By default the image dimensions are 512x64. To remove it completely, use an empty .png file."
 		));
 
 		configMetaData.put("setCustomBackground", Arrays.asList(
-			"If a custom background should be rendered. A 'background.png' file is needed. Located in './config/simplemenu/background/'."
+			"If a custom background should be rendered. A 'background.png' file is needed. Located in './config/serilum/simplemenu/background/'."
 		));
 
 		configMetaData.put("hideMinecraftRealmsButton", Arrays.asList(
